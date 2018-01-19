@@ -6,29 +6,28 @@ package main
 // Also import fmt for printing information to the terminal.
 // NOTE - Due to a bug, input will only work on Unix-based systems. This is being fixed.
 
-import(
-  "goge"
-  "goge/extras"
-  "goge/score"
-  "fmt"
+import (
+	"fmt"
+	"goge"
+	"goge/extras"
+	"goge/score"
 )
 
 // Create an exit function.
 // This will ask users if they want to continue or quit.
 func exit() {
-  // Ask them for input.
+	// Ask them for input.
 	fmt.Println("Hit ENTR to continu or X to qut.")
-  
-  // Collect the input.
+
+	// Collect the input.
 	input := ""
 	for {
 		input = extras.GetInput()
 		if input == "\n" {
-      // Cobtinue.
+			// Continue.
 			return
 		} else if input == "x" {
-      // Stop the input, clear the screen, and then exit.
-			extras.StopInput()
+			// Stop the input, clear the screen, and then exit.
 			extras.ClearScreen()
 			extras.Exit()
 		}
@@ -40,31 +39,28 @@ var perm = score.NewPerm()
 var temp = score.NewTemp()
 
 func main() {
-  // Initialize input.
-	extras.InitInput()
-
-  // Create a 5x5 grid.
-  // Each model is 4 characters long.
+	// Create a 5x5 grid.
+	// Each model is 4 characters long.
 	grid := goge.Init(4, 5)
-  
-  // Create a framer with a 10 millisecond delay between each frame.
-  // We use this low delay so the gae seems fluid.
+
+	// Create a framer with a 10 millisecond delay between each frame.
+	// We use this low delay so the gae seems fluid.
 	framer := grid.Framer(10)
-  
-  // Create the creatures.
+
+	// Create the creatures.
 	creature := goge.New("You", "_O-*")
 	cheese := goge.New("Cheas", " [> ")
 
-  // Put them in the grid at 1, 1 and 5, 5.
+	// Put them in the grid at 1, 1 and 5, 5.
 	grid.Use(creature, 1, 1)
 	grid.Use(cheese, 5, 5)
 
-  // Clear the screen and print game info.
+	// Clear the screen and print game info.
 	extras.ClearScreen()
 	fmt.Println("The gole of the gaim is to eat the Peic of Cheas.")
 	fmt.Println("Us W, A, S, and D to cuntrol yur charcter.")
 
-  // Print the scoring info.
+	// Print the scoring info.
 	fmt.Print("\nHi scor: ")
 	fmt.Print(perm.Highest)
 	fmt.Print(".\nLow scor: ")
@@ -75,84 +71,84 @@ func main() {
 	fmt.Print(perm.GamesPlayed)
 	fmt.Println(" gaims\n")
 
-  // Check with the user if they want to continue.
+	// Check with the user if they want to continue.
 	exit()
 
-  // Display the blank grid.
+	// Display the blank grid.
 	framer.Frame()
-  
-  // Give the user a starting score of 100.
+
+	// Give the user a starting score of 100.
 	temp.Set(100)
-  
-  // And print it out.
+
+	// And print it out.
 	fmt.Print("Current score: ")
 	fmt.Print(temp.Score)
-  
-  // Main game loop:
+
+	// Main game loop:
 	input := ""
 	for {
-    // Get input.
+		// Get input.
 		input = extras.GetInput()
 		if input == "w" {
-      // W key pressed: Move up.
-      // (You can access a creature's current position with creature.Row and creature.Column.)
+			// W key pressed: Move up.
+			// (You can access a creature's current position with creature.Row and creature.Column.)
 			grid.Up(creature.Row, creature.Column)
 		} else if input == "a" {
-      // A key pressed: Move to the left.
+			// A key pressed: Move to the left.
 			grid.Left(creature.Row, creature.Column)
 		} else if input == "s" {
-      // S key pressed: Move down.
+			// S key pressed: Move down.
 			grid.Down(creature.Row, creature.Column)
 		} else if input == "d" {
-      // D key pressed: Move to the right.
+			// D key pressed: Move to the right.
 			grid.Right(creature.Row, creature.Column)
 		} else if input == "M" {
-      // SHIFT+M keys pressed: "Cheat" and gain 100000 points.
+			// SHIFT+M keys pressed: "Cheat" and gain 100000 points.
 			temp.Add(100000)
 		} else {
-      // Otherwise, continue with the loop.
+			// Otherwise, continue with the loop.
 			continue
 		}
-    
-    // Subtract 10 from the user's score.
+
+		// Subtract 10 from the user's score.
 		temp.Subtract(10)
-    
+
 		if grid.Has("Cheas") {
-      // If the cheese is in the grid...
+			// If the cheese is in the grid...
 			if temp.Score == 0 {
-        // If the score is zero, you lost.
+				// If the score is zero, you lost.
 				extras.ClearScreen()
 				fmt.Println("You lost.")
-        
-        // Check with the user if they want to continue.
+
+				// Check with the user if they want to continue.
 				exit()
-        
-        // Play the game again.
+
+				// Play the game again.
 				main()
 			} else {
-        // Otherwise, mark a frame.
+				// Otherwise, mark a frame.
 				framer.Frame()
-        
-        // And show the user their score.
+
+				// And show the user their score.
 				fmt.Print("Current score: ")
 				fmt.Print(temp.Score)
 			}
 		} else {
-      // Otherwise, the user won!
+			// Otherwise, the user won!
 			break
 		}
 	}
 
-  // Add their score to the permanent score.
+	// Add their score to the permanent score.
 	extras.ClearScreen()
 	perm.Add(temp)
-  
-  // Tell them that they won.
+
+	// Tell them that they won.
 	fmt.Println("You one! You aet the Cheas.")
-  
-  // Check with the user if they want to continue.
+
+	// Check with the user if they want to continue.
 	exit()
-  
-  // Play the game again.
+
+	// Play the game again.
 	main()
 }
