@@ -15,4 +15,8 @@ Yes. In `goge/demos` there are some heavily commented Go programs.
 ## Todo
 
 - [x] Make demo programs
-- [ ] Windows-compatible input manager
+- [x] Windows-compatible input manager
+- [ ] Fix bug #4
+- [ ] Fix bug #5
+- [ ] Invisible grid
+- [ ] Solid creatures
