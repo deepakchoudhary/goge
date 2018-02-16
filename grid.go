@@ -6,7 +6,7 @@ import (
 )
 
 type __Grid__ struct {
-	Grid   [][]*__Creature__
+  Grid   [][]*__Creature__
   Chars  int
   Size   int
 }
