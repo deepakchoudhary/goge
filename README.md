@@ -17,7 +17,7 @@ Yes. In `goge/demos` there are some heavily commented Go programs.
 - [x] Make demo programs
 - [x] Windows-compatible input manager
 - [ ] Fix bug [#4](https://github.com/go-ge/goge/issues/4)
-- [ ] Fix bug [#5](https://github.com/go-ge/goge/issues/5)
+- [x] Fix bug [#5](https://github.com/go-ge/goge/issues/5)
 - [ ] Invisible grid
 - [ ] Solid creatures
 - [ ] Colliders
