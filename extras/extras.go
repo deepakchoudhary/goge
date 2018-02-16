@@ -68,16 +68,14 @@ func IsWindows() bool {
 }
 
 func ClearScreen() {
-	cmd := "cls"
+	cmd := exec.Command("cmd", "/c", "cls")
 	if IsWindows() {
-		cmd = "cls"
+		cmd = exec.Command("cmd", "/c", "cls")
 	} else {
-		cmd = "clear"
+		cmd = exec.Command("clear")
 	}
-
-	com := exec.Command(cmd)
-	stdout, _ := com.Output()
-	os.Stdout.Write(stdout)
+	cmd.Stdout = os.Stdout
+	cmd.Run()
 }
 
 func Delay(millis int) {
