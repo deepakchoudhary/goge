@@ -18,7 +18,7 @@ Yes. In `goge/demos` there are some heavily commented Go programs.
 - [x] Windows-compatible input manager
 - [ ] Fix bug [#4](https://github.com/go-ge/goge/issues/4)
 - [x] Fix bug [#5](https://github.com/go-ge/goge/issues/5)
-- [ ] Invisible grid
+- [x] Invisible grid
 - [ ] Grid thickness
 - [ ] Adjustable width and height of grid squares
 - [ ] Solid creatures
