@@ -48,8 +48,8 @@ func main() {
 	framer := grid.Framer(10)
 
 	// Create the creatures.
-	creature := goge.New("You", "_O-*")
-	cheese := goge.New("Cheas", " [> ")
+	creature := goge.New("You", "_O-*", true)
+	cheese := goge.New("Cheas", " [> ", false)
 
 	// Put them in the grid at 1, 1 and 5, 5.
 	grid.Use(creature, 1, 1)
