@@ -77,7 +77,7 @@ func (grid *__Grid__) Draw() *__Grid__ {
 	return grid
 }
 func (grid *__Grid__) Empty(row int, col int) *__Grid__ {
-	grid.__UpdatePos__().Grid[row-1][col-1] = New("__Blank__", extras.Times(" ", grid.Chars))
+	grid.__UpdatePos__().Grid[row-1][col-1] = New("__Blank__", extras.Times(" ", grid.Chars), false)
 	grid.__UpdatePos__()
 
 	return grid
@@ -141,7 +141,7 @@ func (grid *__Grid__) Delay(millis int) *__Grid__ {
 func (grid *__Grid__) Down(row int, col int) *__Grid__ {
 	if row != grid.Size {
 		grid.Grid[row][col-1] = grid.Grid[row-1][col-1]
-		grid.Grid[row-1][col-1] = New("__Blank__", extras.Times(" ", grid.Chars))
+		grid.Grid[row-1][col-1] = New("__Blank__", extras.Times(" ", grid.Chars), false)
 	}
 	grid.__UpdatePos__()
 
@@ -150,7 +150,7 @@ func (grid *__Grid__) Down(row int, col int) *__Grid__ {
 func (grid *__Grid__) Up(row int, col int) *__Grid__ {
 	if row != 1 {
 		grid.Grid[row-2][col-1] = grid.Grid[row-1][col-1]
-		grid.Grid[row-1][col-1] = New("__Blank__", extras.Times(" ", grid.Chars))
+		grid.Grid[row-1][col-1] = New("__Blank__", extras.Times(" ", grid.Chars), false)
 	}
 	grid.__UpdatePos__()
 
@@ -161,7 +161,7 @@ func (grid *__Grid__) Left(row int, col int) *__Grid__ {
 
 	if col != 1 {
 		grid.Grid[row-1][col-2] = grid.Grid[row-1][col-1]
-		grid.Grid[row-1][col-1] = New("__Blank__", extras.Times(" ", grid.Chars))
+		grid.Grid[row-1][col-1] = New("__Blank__", extras.Times(" ", grid.Chars), false)
 	}
 	grid.__UpdatePos__()
 
@@ -172,7 +172,7 @@ func (grid *__Grid__) Right(row int, col int) *__Grid__ {
 
 	if col != grid.Size {
 		grid.Grid[row-1][col] = grid.Grid[row-1][col-1]
-		grid.Grid[row-1][col-1] = New("__Blank__", extras.Times(" ", grid.Chars))
+		grid.Grid[row-1][col-1] = New("__Blank__", extras.Times(" ", grid.Chars), false)
 	}
 	grid.__UpdatePos__()
 
@@ -209,7 +209,7 @@ func Init(chars int, size int) *__Grid__ {
 	}
 	for row := range blankArray {
 		for col := range blankArray {
-			blankArray[row][col] = New("__Blank__", extras.Times(" ", chars))
+			blankArray[row][col] = New("__Blank__", extras.Times(" ", chars), false)
 		}
 	}
 	__CheckSize__(size)

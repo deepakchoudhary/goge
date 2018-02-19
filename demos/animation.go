@@ -23,10 +23,10 @@ func main() {
 
 	// Create a new character (or creature) that is named "Dragon".
 	// It's model is _O--*.
-	dragon := goge.New("Dragon", "_O--*")
+	dragon := goge.New("Dragon", "_O--*", true)
 
 	// Create a new creature called "Pizza" whose model is [>>.
-	pizza := goge.New("Pizza", " [>> ")
+	pizza := goge.New("Pizza", " [>> ", true)
 
 	// Put the dragon in row 1, column 1.
 	// And put the pizza in row 2, column 3.
