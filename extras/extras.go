@@ -33,7 +33,7 @@ char getch(){
 }
 #endif
 */
-import "C"
+//import "C"
 import (
 	"fmt"
 	"os"
@@ -83,7 +83,13 @@ func Delay(millis int) {
 }
 
 func GetInput() string {
-	return string(byte(C.getch()))
+	exec.Command("stty", "-F", "/dev/tty", "cbreak", "min", "1").Run()
+	// do not display entered characters on the screen
+	exec.Command("stty", "-F", "/dev/tty", "-echo").Run()
+	//return string(byte(C.getch()))
+	var b []byte = make([]byte, 1)
+	os.Stdin.Read(b)
+	return string(b)
 }
 
 func Flip(str string) string {
